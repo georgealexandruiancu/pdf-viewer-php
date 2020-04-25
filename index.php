@@ -4,8 +4,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PDF VIEWER</title>
 
-	<script type="text/javascript" src="https://cdn.rawgit.com/asvd/dragscroll/master/dragscroll.js"></script>
-
 	<link rel="stylesheet" href="styles/styles.min.css">
 </head>
 <body>
@@ -40,7 +38,7 @@
 
 	<div class="copyright">
 		<a href="https://foton.ro" target="_blank">FOTON.RO</a> - 2020 - All right reserved. <br/>
-		Implmeneted by <a href="https://alxxiancu.com" target="_blank">Alex Iancu</a>
+		Implemented by <a href="https://alxxiancu.com" target="_blank">Alex Iancu</a>
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
@@ -48,7 +46,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
 	<script src="js/index.js"></script>
 	<script src="js/swipe.js"></script>
-	<script src="js/magnifier.js"></script>
-
 </body>
 </html>
