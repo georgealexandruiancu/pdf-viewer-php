@@ -1,44 +1,67 @@
-var touchstartX = 0;
-var touchstartY = 0;
-var touchendX = 0;
-var touchendY = 0;
+function swipedetect(el, callback) {
+	var touchsurface = el,
+		swipedir,
+		startX,
+		startY,
+		distX,
+		distY,
+		threshold = 150, //required min distance traveled to be considered swipe
+		restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+		allowedTime = 300, // maximum time allowed to travel that distance
+		elapsedTime,
+		startTime,
+		handleswipe = callback || function (swipedir) {};
 
-var gesuredZone = document.getElementById("gesuredZone");
+	touchsurface.addEventListener(
+		"touchstart",
+			function (e) {
+			var touchobj = e.changedTouches[0];
+			swipedir = "none";
+			dist = 0;
+			startX = touchobj.pageX;
+			startY = touchobj.pageY;
+			startTime = new Date().getTime(); // record time when finger first makes contact with surface
+			e.preventDefault();
+			},
+			false
+		);
 
-gesuredZone.addEventListener(
-	"touchstart",
-	function (event) {
-		touchstartX = event.screenX;
-		touchstartY = event.screenY;
-	},
-	false
-);
-
-gesuredZone.addEventListener(
-	"touchend",
-	function (event) {
-		touchendX = event.screenX;
-		touchendY = event.screenY;
-		handleGesure();
-	},
-	false
-);
-
-function handleGesure() {
-	var swiped = "swiped: ";
-	if (touchendX < touchstartX) {
-		alert(swiped + "left!");
-		$(window).trigger("swipeLeft.IancuNS");
-	}
-	if (touchendX > touchstartX) {
-		alert(swiped + "right!");
-		$(window).trigger("swipeRight.IancuNS");
-	}
-	if (touchendY < touchstartY) {
-		alert(swiped + "down!");
-	}
-	if (touchendY > touchstartY) {
-		alert(swiped + "left!");
-		$(window).trigger("swipeLeft.IancuNS");
-	}
+	touchsurface.addEventListener(
+		"touchend",
+			function (e) {
+			var touchobj = e.changedTouches[0];
+			distX = touchobj.pageX - startX; // get horizontal dist traveled by finger while in contact with surface
+			distY = touchobj.pageY - startY; // get vertical dist traveled by finger while in contact with surface
+			elapsedTime = new Date().getTime() - startTime; // get time elapsed
+			if (elapsedTime <= allowedTime) {
+				// first condition for awipe met
+				if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+					// 2nd condition for horizontal swipe met
+					swipedir = distX < 0 ? "left" : "right"; // if dist traveled is negative, it indicates left swipe
+				}
+			}
+			handleswipe(swipedir);
+				e.preventDefault();
+			},
+			false
+		);
 }
+
+window.addEventListener(
+	"load",
+	function () {
+		var el = document.getElementById("canvas_container");
+		swipedetect(el, function (swipedir) {
+			if (swipedir != "none") {
+				if (swipedir === "left") {
+					$(window).trigger("swipeLeft.IancuNS");
+				}
+
+				if (swipedir === "right") {
+					$(window).trigger("swipeRight.IancuNS");
+				}
+			}
+		});
+	},
+	false
+);
