@@ -38,6 +38,11 @@
 		</div>
 	</div>
 
+	<div class="copyright">
+		<a href="https://foton.ro" target="_blank">FOTON.RO</a> - 2020 - All right reserved. <br/>
+		Implmeneted by <a href="https://alxxiancu.com" target="_blank">Alex Iancu</a>
+	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
